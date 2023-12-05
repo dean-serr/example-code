@@ -71,27 +71,27 @@ Once the user feels like it matches, they may click "done" in which the game res
                 sample.innerHTML = "Does this look right?";
             }
 
-            function increaseSize() 
+            function increaseSize() //Incrementing font size
             {
                 guessSize++;
-                sample.style.fontSize = guessSize + "px";
+                sample.style.fontSize = guessSize + "px"; //Updates font
             }
 
-            function decreaseSize() 
+            function decreaseSize() //Decrementing font size
             {
                 guessSize--;
-                sample.style.fontSize = guessSize + "px";
+                sample.style.fontSize = guessSize + "px"; //Updates font
             }
 
             function finalGuess()
             {
                 let buttons = document.getElementsByTagName("button");
-                for (let i = 0; i < buttons.length; i++) 
+                for (let i = 0; i < buttons.length; i++) //Disables all buttons once guess is made
                 {
                     buttons[i].disabled = true;
                 }
 
-                if(guessSize == userFontSize)
+                if(guessSize == userFontSize) //For if the user guesses right
                 {
                     sample.style.color = "green";
                     sample.innerHTML = "Good eye! You guessed the font size right!";
@@ -103,7 +103,7 @@ Once the user feels like it matches, they may click "done" in which the game res
                     sample.innerHTML = "Whoops! It looks like your guess wasn't quite right.";
 
                     guess.style.fontSize = guessSize + "px";
-                    guess.innerHTML = "Your guess was a size of " + guessSize + "px";
+                    guess.innerHTML = "Your guess was a size of " + guessSize + "px"; //Tells user the size they guessed
                 }
             }
         </script>
