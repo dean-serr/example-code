@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html lang = "en">
+
+<!--
+Student Name: Dean Serrano
+Assignment: JavaScript Font Size Increment
+Instructor: Jeremiah Ramsey
+Date: 11/14/2023
+Purpose: This file prompts the user for a font size to guess. The user then uses a 
+pair of buttons to increment/decrement the sample font's size attempting to match the size they chose.
+Once the user feels like it matches, they may click "done" in which the game results will be displayed.
+-->
+
+    <head>
+        <title>JavaScript Font Size Increment</title>
+        <meta charset = "utf-8">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Righteous&display=swap');
+
+            .body {
+                text-align: center;
+                background-color: #f2e5ce;
+            }
+            h1, h3 {
+                font-family: Righteous, Arial, sans-serif;
+            }
+            li, p {
+                font-family: Poppins, Arial, sans-serif;
+            }
+        </style>
+    </head>
+    <body class = "body">
+        <h1> Welcome to Guess The Font Size!</h1>
+        <h3>How to play:</h3>
+        <ul>
+            <li>Choose a font size you'd like to guess.</li>
+            <li>Then use the "bigger" and "smaller" buttons to adjust the sample text.</li>
+            <li>Finally, click "done" when you think you've got it right! </li>
+        </ul>
+
+        <p>(If you would like to play again, refresh the page)</p>
+
+        <button onclick="chooseFontSize()">Choose Font Size</button>
+        
+        <p id = "reference"></p>
+        <p id = "sample"></p>
+        <p id = "guess"></p>
+
+        <button onclick="increaseSize()">bigger</button>
+        <button onclick="decreaseSize()">smaller</button>
+        <button onclick="finalGuess()">done</button>
+
+        <script>
+
+            let guessSize = 1;
+            let userFontSize;
+            let reference = document.getElementById("reference");
+            let sample = document.getElementById("sample");
+            let guess = document.getElementById("guess");
+            let answer = document.getElementById("answer");
+            let fontSizeGuess;
+
+            function chooseFontSize() 
+            {
+                userFontSize = prompt("Please choose a font size", "e.g. 25");
+                reference.style.fontSize = userFontSize + "px";
+                reference.innerHTML = "Your chosen font size of " + userFontSize + "px";
+
+                sample.style.fontSize = guessSize + "px";
+                sample.innerHTML = "Does this look right?";
+            }
+
+            function increaseSize() 
+            {
+                guessSize++;
+                sample.style.fontSize = guessSize + "px";
+            }
+
+            function decreaseSize() 
+            {
+                guessSize--;
+                sample.style.fontSize = guessSize + "px";
+            }
+
+            function finalGuess()
+            {
+                let buttons = document.getElementsByTagName("button");
+                for (let i = 0; i < buttons.length; i++) 
+                {
+                    buttons[i].disabled = true;
+                }
+
+                if(guessSize == userFontSize)
+                {
+                    sample.style.color = "green";
+                    sample.innerHTML = "Good eye! You guessed the font size right!";
+                }
+                else
+                {
+                    sample.style.color = "red";
+                    sample.style.fontSize = "20px";
+                    sample.innerHTML = "Whoops! It looks like your guess wasn't quite right.";
+
+                    guess.style.fontSize = guessSize + "px";
+                    guess.innerHTML = "Your guess was a size of " + guessSize + "px";
+                }
+            }
+        </script>
+    </body>
+</html>
